@@ -14,5 +14,5 @@ else:
     print('We are in production')
     from settings_files.prod import *
 
-USER_ROLE_NAME = 'SoftVisioner'
+DEFAULT_USER_ROLE_NAME = 'SoftVisioner'
 MODERATOR_ROLE_NAME = 'Moderator'

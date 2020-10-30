@@ -1,5 +1,5 @@
-from discord.ext.commands import *
 from utils import mods_or_owner
+from discord.ext.commands import *
 
 
 class Admin(Cog):
@@ -7,8 +7,8 @@ class Admin(Cog):
         self.client = client
         print(f'{type(self).__name__} cog has been loaded.')
 
+    @mods_or_owner()
     @command(brief='Unloads cogs')
-    @is_owner()
     async def unload(self, ctx, cog: str):
         try:
             self.client.unload_extension(cog)
@@ -16,8 +16,8 @@ class Admin(Cog):
             await ctx.send('Could not unload {cog}')
         await ctx.send(f'{cog}  unloaded')
 
+    @mods_or_owner()
     @command(brief='Loads cogs')
-    @is_owner()
     async def load(self, ctx, cog: str):
         try:
             self.client.load_extension(cog)
@@ -25,8 +25,8 @@ class Admin(Cog):
             await ctx.send(f'Could not load {cog}')
         await ctx.send(f'{cog} loaded')
 
+    @mods_or_owner()
     @command(brief='Reloads cogs')
-    @is_owner()
     async def reload(self, ctx, cog: str):
         try:
             self.client.unload_extension(cog)

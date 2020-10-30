@@ -2,7 +2,7 @@ import json
 import random
 
 from settings import *
-from discord.ext import commands
+from discord.ext.commands import *
 
 
 def load_cogs(client):
@@ -21,18 +21,20 @@ async def notify_user(member, author, message):
 
 def mods_or_owner():
     def check(ctx):
-        return commands.check_any(commands.is_owner(),
-                                  commands.has_role(MODERATOR_ROLE_NAME),
-                                  commands.has_role('Admin'))
+        return check_any(is_owner(),
+                         has_role(MODERATOR_ROLE_NAME),
+                         has_role('Admin'))
 
-    return commands.check(check)
+    return check(check)
 
 
 def get_prefix(client, message):
     with open('prefixes.json', 'r') as json_file:
         prefixes = json.load(json_file)
-
-    return prefixes[str(message.guild.id)]
+    try:
+        return prefixes[str(message.guild.id)]
+    except AttributeError as ae:
+        return '.'
 
 
 def greeter(member):

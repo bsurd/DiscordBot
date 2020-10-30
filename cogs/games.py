@@ -8,7 +8,7 @@ class Games(Cog):
         self.client = client
         print(f'{type(self).__name__} cog has been loaded.')
 
-    @command(name='8ball', aliases=['eightball', 'eight_ball'], brief='Ask a question.',
+    @command(name='8ball', aliases=['eightball', 'eight_ball'], brief='Gives advice',
              description='To use the command you must use the prefix together with the command '
                          'name, then leave an empty space followed by your question.')
     async def _8ball(self, ctx, *, question):
@@ -35,7 +35,7 @@ class Games(Cog):
         await ctx.send(f'{ctx.author.mention} asked, shaking vigorously: **{question}**\n'
                        f'The 8ball has found your answer: **{random.choice(responses)}**')
 
-    @command(brief='Flips a coin.')
+    @command(brief='Flips a coin')
     async def coin(self, ctx):
         await ctx.send(random.choice(["Heads", "Tails"]))
 

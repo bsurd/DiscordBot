@@ -10,10 +10,10 @@ class Mod(Cog):
         self._last_member = None
         print(f'{type(self).__name__} cog has been loaded.')
 
-    @mods_or_owner()
-    @command(brief='Kicks a user from the server.')
     @guild_only()
+    @mods_or_owner()
     @has_permissions(kick_members=True)
+    @command(brief='Kicks a user from the server')
     async def kick(self, ctx, member: discord.Member = None,
                    reason: str = 'You need a timeout.'):
         if member is not None:
@@ -23,10 +23,10 @@ class Mod(Cog):
         else:
             await ctx.send('Please specify user to kick.')
 
-    @mods_or_owner()
-    @command(brief='Bans a user from the server.')
     @guild_only()
+    @mods_or_owner()
     @has_permissions(ban_members=True)
+    @command(brief='Bans a user from the server')
     async def ban(self, ctx, member: discord.Member = None,
                   reason: str = 'You are no longer allowed access to this server.'):
         if member is not None:
@@ -36,10 +36,10 @@ class Mod(Cog):
         else:
             await ctx.send('Please specify user to kick.')
 
-    @mods_or_owner()
-    @command(brief='Unbans a user from the server.')
     @guild_only()
+    @mods_or_owner()
     @has_permissions(ban_members=True)
+    @command(brief='Unbans a user from the server')
     async def unban(self, ctx, *, member):
         banned_users = await ctx.guild.bans()
         member_name, member_discriminator = member.split('#')
@@ -52,7 +52,8 @@ class Mod(Cog):
                 await ctx.send(f'User {user} was not found in ban list.')
 
     @mods_or_owner()
-    @command(brief='Mutes everyone in voice channel.')
+    @has_permissions()
+    @command(brief='Mutes everyone in voice channel')
     async def mute(self, ctx):
         voice_channel = ctx.author.voice.channel
         for member in voice_channel.members:
