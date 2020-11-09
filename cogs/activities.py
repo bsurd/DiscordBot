@@ -18,6 +18,12 @@ class Activities(Cog):
         await self.client.change_presence(activity=activity)
 
     @Cog.listener()
+    async def on_member_join(self, member):
+        channel = discord.utils.get(member.guild.channels, name='general')
+        await channel.send(greeter(member.mention))
+        print(member.display_name)
+
+    @Cog.listener()
     async def on_guild_join(self, guild):
         with open('prefixes.json', 'r') as json_file:
             prefixes = json.load(json_file)
@@ -36,28 +42,8 @@ class Activities(Cog):
             json.dump(prefixes, json_file, indent=4)
 
     @Cog.listener()
-    async def on_member_join(self, member):
-        channel = discord.utils.get(member.guild.system_channels, name='general')
-        await channel.send(f'Welcome {member.mention}, you mofo!')
-        # print(member.Guild.get_role(USER_ROLE_NAME))
-        # await member.add_roles(role, reason='Automatic role assignment', automatic=True)
-        # print(f'{member} joined and was given the role {role}')
-        # if channel is not None:
-        #     await channel.send(greeter(member.mention))
-
-    @Cog.listener()
-    async def on_member_remove(self):
-        print(f'{self} has left the server')
-
-    @Cog.listener()
-    async def on_command_error(self, ctx, err):
-        print(err)
-        await ctx.send('Please check help section to verify command usage.')
-
-    @Cog.listener()
-    async def on_missing_permissions_error(self, ctx, err):
-        print(err)
-        await ctx.send('You do not have enough permissions to perform this action.')
+    async def on_member_remove(self, member):
+        print(f'{member} has left the server')
 
 
 def setup(client):

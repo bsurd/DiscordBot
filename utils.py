@@ -38,8 +38,12 @@ def get_prefix(client, message):
 
 
 def greeter(member):
-    greetings = [f'Welcome {member}',
-                 f"Hey everyone it's {member}",
-                 f"How you doin' {member}",
+    greetings = [f'{member} just joined. Everyone, look busy!',
+                 f'{member} has fallen from the sky. Calling on Bones to the landing area.',
+                 f'{member} has spawned! You must construct additional pylons.',
+                 f'Welcome {member}. Stay awhile and listen.',
+                 f"Hide your wife, hide your kids, cause it's {member} who just got here!",
+                 f"Damn it's {member}. Who invited him to the party?",
+                 f"Hold my beer, {member} is here!",
                  f'{member} has joined! Cool, cool, cool, cool, cool! No doubt, no doubt, no doubt.']
     return random.choice(greetings)
