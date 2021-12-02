@@ -1,5 +1,7 @@
+## :warning: Abandoned
+
 ### DiscordBot
-  - A Discord Bot attempt in order to practice and exercise Python (Abandoned :warning:)
+  - A Discord Bot attempt in order to practice and exercise Python
 
 ### Setup instructions
   - Install [Python 3.8+](https://www.python.org/downloads/)
